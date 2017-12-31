@@ -138,6 +138,32 @@ function addViewer()
     end
 end
 bestScore = 0
+
+function getBestScores()
+    local path = system.pathForFile( "cargo-best-scores.txt", system.DocumentsDirectory )
+    local file, errorString = io.open( path, "r" )
+
+    if file then
+        local contents = file:read( "*a" )
+        return tonumber(contents);
+    else 
+        return 0
+end
+
+function setBestScores(scores) 
+    local path = system.pathForFile( "cargo-best-scores.txt", system.DocumentsDirectory )
+    local file, errorString = io.open( path, "w" )
+
+    if not file then
+        print( "File error: " .. errorString )
+    else
+        file:write( tostring(scores) )
+        io.close( file )
+    end
+     
+    file = nil
+end
+
 function overGame()
     soundPlayCrash()
     car:removeEventListener("collision",crash)
@@ -213,7 +239,7 @@ function overGame()
     speakerButton:addEventListener("tap",speakerStatusChange)
     speakerButton:addEventListener("tap",speakerIconChange)
 end
-bestScore = 0
+bestScore = getBestScores();
 function speakerStatusChange()
     if(speakerStatus == true)then
     speakerStatus = false
@@ -265,7 +291,8 @@ function restart()
 end
 function bestScores()
     if(score > bestScore)then
-    bestScore = score   
+        setBestScores(score);
+        bestScore = score   
     end
 end
     buttonStatus2 = false
