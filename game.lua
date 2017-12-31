@@ -148,6 +148,7 @@ function getBestScores()
         return tonumber(contents);
     else 
         return 0
+    end
 end
 
 function setBestScores(scores) 
@@ -291,7 +292,7 @@ function restart()
 end
 function bestScores()
     if(score > bestScore)then
-        setBestScores(score);
+        setBestScores(score)
         bestScore = score   
     end
 end
