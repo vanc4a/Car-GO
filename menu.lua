@@ -20,7 +20,7 @@ buttonBg:setFillColor(0.84,0.43,0)
 buttonBg.strokeWidth = 2
 buttonBg:setStrokeColor(0,0,0)
 opt = {
-    text = "PLAY NOW",
+    text = "PLAY",
     x = _X,
     y = _Y,
     fontSize = _W/6,
